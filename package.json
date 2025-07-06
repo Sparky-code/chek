@@ -34,11 +34,16 @@
     "url": "https://github.com/vladimir-vovk/expo-ts/issues"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~5.0.4",
+    "eslint-config-expo": "~9.2.0",
     "expo": "~53.0.2",
     "expo-status-bar": "~2.2.2",
-    "react": "19.0",
-    "react-native": "0.79.1",
-    "react-native-safe-area-context": "5.3.0"
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.3",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-web": "^0.20.0",
+    "scheduler": "^0.23.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -49,9 +54,9 @@
     "@testing-library/react-native": "^13.2.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/jest": "^29.5.14",
-    "@types/react": "~19.0.10",
+    "@types/react": "^19.0.0",
     "eslint": "^9.0.0",
-    "eslint-config-expo": "~9.1.1",
+    "eslint-config-expo": "~9.2.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-jest-dom": "^5.5.0",
     "eslint-plugin-testing-library": "^7.1.1",
@@ -60,7 +65,7 @@
     "jest-expo": "~53.0.2",
     "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
-    "react-test-renderer": "^19.0.0",
+    "react-test-renderer": "19.0.0",
     "standard-version": "^9.5.0",
     "typescript": "~5.8.3"
   },

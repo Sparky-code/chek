@@ -35,5 +35,13 @@ export default defineConfig([
   ...compat.plugins('jest', 'testing-library'),
 
   /* extends */
-  ...compat.extends('plugin:testing-library/react', 'plugin:jest-dom/recommended')
+  ...compat.extends('plugin:testing-library/react', 'plugin:jest-dom/recommended'),
+
+  /* React Native specific overrides */
+  {
+    files: ['**/*.test.{js,ts,jsx,tsx}', '**/*.spec.{js,ts,jsx,tsx}'],
+    rules: {
+      'jest-dom/prefer-in-document': 'off'
+    }
+  }
 ])

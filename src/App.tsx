@@ -1,31 +1,31 @@
 import { ReactElement } from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { Linking, Pressable, Text, View } from 'react-native'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
+import { Button } from './components/Button/Button'
+import { styles } from './styles/App.styles'
+
 export const App = (): ReactElement => {
+  const currentYear = new Date().getFullYear()
+
+  const AuthorPress = () => {
+    Linking.openURL('https://github.com/sparky-code')
+  }
+
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.emoji}>😻</Text>
-        <Text style={styles.text}>Open src/App.tsx to start working on your app!</Text>
-        <Text>Happy hacking! 🙌🏻</Text>
-      </SafeAreaView>
+      <View style={styles.container}>
+        <SafeAreaView style={styles.safeArea}>
+          <Button title="Click me" onPress={() => {}} accessibilityLabel="Click me" />
+          <Text style={styles.text}>Chek - A React Native App for settling the check!</Text>
+          <Text style={styles.subtext}>
+            © {currentYear}{' '}
+            <Pressable onPress={AuthorPress}>
+              <Text style={styles.link}>@Sparky-code</Text>
+            </Pressable>
+          </Text>
+        </SafeAreaView>
+      </View>
     </SafeAreaProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    marginBottom: 8
-  },
-  emoji: {
-    fontSize: 82,
-    marginBottom: 24
-  }
-})
