@@ -1,31 +1,63 @@
-import { ReactElement } from 'react'
-import { Linking, Pressable, Text, View } from 'react-native'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
+import React, { useState } from 'react'
+import { Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
-import { Button } from './components/Button/Button'
-import { styles } from './styles/App.styles'
+import { BasicSplit } from './components/BasicSplit/BasicSplit'
+import { theme } from './styles/theme'
+import { SplitResult } from './types/checkout'
 
-export const App = (): ReactElement => {
-  const currentYear = new Date().getFullYear()
+export default function App() {
+  const [splitResult, setSplitResult] = useState<SplitResult | null>(null)
 
-  const AuthorPress = () => {
-    Linking.openURL('https://github.com/sparky-code')
+  const handleShowResult = (result: SplitResult) => {
+    setSplitResult(result)
   }
 
   return (
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <SafeAreaView style={styles.safeArea}>
-          <Button title="Click me" onPress={() => {}} accessibilityLabel="Click me" />
-          <Text style={styles.text}>Chek - A React Native App for settling the check!</Text>
-          <Text style={styles.subtext}>
-            © {currentYear}{' '}
-            <Pressable onPress={AuthorPress}>
-              <Text style={styles.link}>@Sparky-code</Text>
-            </Pressable>
-          </Text>
-        </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor={theme.colors.background} />
+
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>Bill Splitter</Text>
       </View>
-    </SafeAreaProvider>
+
+      {/* Main Content */}
+      <View style={styles.content}>
+        <BasicSplit onShowResult={handleShowResult} />
+      </View>
+    </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background
+  },
+  header: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: theme.colors.shadow,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84
+      },
+      android: {
+        elevation: 5
+      }
+    })
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: theme.colors.text.primary
+  },
+  content: {
+    flex: 1,
+    backgroundColor: theme.colors.background
+  }
+})
